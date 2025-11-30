@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.rakib.studentportal.activities.AdminLoginActivity;
 import com.rakib.studentportal.activities.StudentLoginActivity;
 import com.rakib.studentportal.activities.StudentRegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnAdminLogin, btnStudentLogin, btnStudentRegister;
+    private CardView btnAdminLogin, btnStudentLogin, btnStudentRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

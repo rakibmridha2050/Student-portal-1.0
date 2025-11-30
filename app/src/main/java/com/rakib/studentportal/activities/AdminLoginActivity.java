@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +12,8 @@ import com.rakib.studentportal.R;
 
 public class AdminLoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
-    private Button btnLogin, btnBack;
+    private Button btnLogin;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
