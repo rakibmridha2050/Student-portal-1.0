@@ -1,8 +1,10 @@
 package com.rakib.studentportal.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.rakib.studentportal.DatabaseHelper;
+import com.rakib.studentportal.MainActivity;
 import com.rakib.studentportal.R;
 import com.rakib.studentportal.adapter.PaymentAdapter;
 import com.rakib.studentportal.adapter.StudentAdapter;
@@ -23,7 +26,7 @@ import java.util.Locale;
 
 public class AdminDashboardActivity extends AppCompatActivity {
     private CardView btnManageStudents, btnManagePayments;
-    private MaterialButton btnAddStudent;
+    private MaterialButton btnAddStudent, btnLogout;
     private RecyclerView rvStudents, rvPayments;
     private DatabaseHelper dbHelper;
     private StudentAdapter studentAdapter;
@@ -46,6 +49,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         btnManageStudents = findViewById(R.id.btnManageStudents);
         btnManagePayments = findViewById(R.id.btnManagePayments);
         btnAddStudent = findViewById(R.id.btnAddStudent);
+        btnLogout = findViewById(R.id.btnLogout); // New logout button
         rvStudents = findViewById(R.id.rvStudents);
         rvPayments = findViewById(R.id.rvPayments);
         tabLayout = findViewById(R.id.tabLayout);
@@ -122,6 +126,43 @@ public class AdminDashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddStudentActivity.class);
             startActivity(intent);
         });
+
+        // Logout button click listener
+        btnLogout.setOnClickListener(v -> {
+            showLogoutConfirmationDialog();
+        });
+    }
+
+    private void showLogoutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                performLogout();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void performLogout() {
+        // Clear any session data if you have
+        // dbHelper.clearSessionData(); // Uncomment if you have session management
+
+        // Navigate back to main activity (login screen)
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void loadData() {
