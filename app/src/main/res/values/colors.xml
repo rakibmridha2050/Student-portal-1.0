@@ -19,5 +19,18 @@
 
 
 
+    <color name="background_grey">#F5F5F5</color>
+    <color name="primary_text">#1C1B1F</color>
+
+    <color name="hint_text">#79747E</color>
+    <color name="white_alpha">#B3FFFFFF</color>
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_amber">#FF9800</color>
+
+
+
+
+
+
 
 </resources>
